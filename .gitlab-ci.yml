@@ -15,5 +15,5 @@ test-job:
   stage: test
   script:
     - echo "Running tests..."
-    - mvn clean test -DuserName=$USERNAME -Dpassword=$PASSWORD
+    - mvn clean test -Dselenide.headless=true -DuserName=$USERNAME -Dpassword=$PASSWORD
     - echo "Finishing tests..."
