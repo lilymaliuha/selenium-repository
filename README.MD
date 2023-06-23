@@ -1,11 +1,11 @@
 # Setup
-1. Clone the repository to your local machine:
+1. Clone the repository to your local machine:<br>
 `git clone https://gitlab.com/testing-tasks/mechanic-advisor-repository.git`
 
-2. Navigate to the project directory using PowerShell/cmd:
+2. Navigate to the project directory using PowerShell/cmd:<br>
 `cd your-repository`
 
-3. Install project dependencies using Maven:
+3. Install project dependencies using Maven:<br>
 `mvn clean install`
 
 # Running Tests Locally 
@@ -13,20 +13,22 @@
 To run the Selenium Java tests you should:
 1. Go to the .env file and enter USERNAME and PASSWORD values.
 
-2. Open BaseTest file and uncomment the first 2 lines and comment the second 2 lines 
-_//public String userName = dotenv.get("USERNAME"); //public String password =  dotenv.get("PASSWORD");
-public String userName = System.getProperty("userName"); public String password = System.getProperty("password");_
+2. Open BaseTest file and uncomment the first 2 lines and comment the second 2 lines <br>
 
-3.Execute the following Maven command:
+**_//public String userName = dotenv.get("USERNAME"); //public String password =  dotenv.get("PASSWORD");
+public String userName = System.getProperty("userName"); public String password = System.getProperty("password");_**
+
+3. Execute the following Maven command:<br>
 `mvn test`
 
 This command will trigger the test execution using the TestNG framework and generate the test reports.
 
 # Test Reports
 
-After running the tests, the test reports will be generated in the target/surefire-reports directory. 
-Open the HTML report file (index.html and emailable-report.html) in a web browser to view the detailed test results, including the number of tests 
-executed, passed, failed, etc.
+After running the tests, the test reports will be generated in the target/surefire-reports directory.<br>
+Locally you can open the HTML report files (index.html and emailable-report.html) in a web browser to view<br>
+the detailed test results, including the number of tests executed, passed, failed, etc.<br>
+In GitLab please download the report and open in the browser.
 
 # Running the Pipeline
 
@@ -48,5 +50,5 @@ executed, passed, failed, etc.
 
 3. Click on the "Run Pipeline" button and on the opened page again click on the "Run Pipeline" button.
 
-4.Wait for the result of the pipeline run.
+4. Wait for the result of the pipeline run.
 
