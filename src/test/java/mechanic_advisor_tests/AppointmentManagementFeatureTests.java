@@ -17,7 +17,7 @@ public class AppointmentManagementFeatureTests extends BaseTest {
         CalendarPage calendarPage = new CalendarPage(driver);
         CreateNewAppointmentDialog newAppointmentDialog = new CreateNewAppointmentDialog(driver);
 
-        loginPage.login("aqa.interview@mailinator.com", "P5vioN%jc&^b");
+        loginPage.login(userName, password);
         navigationModule.openCalendar(1);
         calendarPage.clickOnNewAppointmentButton();
         newAppointmentDialog.createNewAppointmentForToday("New Appointment", AppointmentType.DROPPING_OFF);

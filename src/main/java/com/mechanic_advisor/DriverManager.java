@@ -20,12 +20,12 @@ public class DriverManager {
         switch (browserType) {
             case CHROME -> {
                 ChromeOptions options = new ChromeOptions();
-                options.addArguments("--no-sandbox"); // Bypass OS security model, MUST BE THE VERY FIRST OPTION
-                options.addArguments("--headless");
+                options.addArguments("--no-sandbox");
+//                options.addArguments("--headless");
                 options.setExperimentalOption("useAutomationExtension", false);
-                options.addArguments("start-maximized"); // open Browser in maximized mode
-                options.addArguments("disable-infobars"); // disabling infobars
-                options.addArguments("--disable-extensions"); // disabling extensions
+                options.addArguments("start-maximized");
+                options.addArguments("disable-infobars");
+                options.addArguments("--disable-extensions");
                 options.addArguments("--disable-dev-shm-usage");
                 options.addArguments("--remote-allow-origins=*");
                 driver = new ChromeDriver(options);
@@ -37,7 +37,7 @@ public class DriverManager {
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--headless");
                 try {
-                    driver = new RemoteWebDriver(new URL("https://dev2frontend.ngrok.io/"), options);
+                    driver = new RemoteWebDriver(new URL("https://localhost:4444"), options);
                 } catch (MalformedURLException e) {
                     throw new RuntimeException(e);
                 }
