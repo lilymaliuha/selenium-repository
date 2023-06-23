@@ -10,6 +10,10 @@ import org.testng.annotations.BeforeMethod;
 public class BaseTest {
     Dotenv dotenv = Dotenv.load();
     public String baseUrl = dotenv.get("BASE_URL");
+
+//    public String userName = dotenv.get("USERNAME");
+//    public String password =  dotenv.get("PASSWORD");
+
     public String userName = System.getProperty("userName");
     public String password = System.getProperty("password");
 

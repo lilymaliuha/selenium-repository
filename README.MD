@@ -8,10 +8,18 @@
 3. Install project dependencies using Maven:
 `mvn clean install`
 
-# Running the Tests
+# Running Tests Locally 
 
-To run the Selenium Java tests, execute the following Maven command:
+To run the Selenium Java tests you should:
+1. Go to the .env file and enter USERNAME and PASSWORD values.
+
+2. Open BaseTest file and uncomment the first 2 lines and comment the second 2 lines 
+_//public String userName = dotenv.get("USERNAME"); //public String password =  dotenv.get("PASSWORD");
+public String userName = System.getProperty("userName"); public String password = System.getProperty("password");_
+
+3.Execute the following Maven command:
 `mvn test`
+
 This command will trigger the test execution using the TestNG framework and generate the test reports.
 
 # Test Reports
