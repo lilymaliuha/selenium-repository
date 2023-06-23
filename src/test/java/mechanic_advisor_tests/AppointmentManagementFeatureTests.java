@@ -25,4 +25,6 @@ public class AppointmentManagementFeatureTests extends BaseTest {
         assertTrue(calendarPage.isAppointmentPresentInCalendar("New Appointment"),
                 "Appointment is not present in the calendar.");
     }
+
+
 }
