@@ -21,7 +21,7 @@ public class DriverManager {
             case CHROME -> {
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--no-sandbox");
-                options.addArguments("--headless");
+                options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
                 options.setExperimentalOption("useAutomationExtension", false);
                 options.addArguments("start-maximized");
                 options.addArguments("disable-infobars");
