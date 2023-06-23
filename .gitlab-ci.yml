@@ -15,4 +15,4 @@ test-job:
   script:
     - echo "Running tests..."
     - mvn clean test -DuserEmail=$USERNAME -Dpassword=$PASSWORD
-    - echo "Finishing tests..."
+    - echo "Finishing tests..." + $USERNAME + " " + $PASSWORD
