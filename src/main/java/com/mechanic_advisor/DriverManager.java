@@ -20,8 +20,14 @@ public class DriverManager {
         switch (browserType) {
             case CHROME -> {
                 ChromeOptions options = new ChromeOptions();
+                options.addArguments("--no-sandbox"); // Bypass OS security model, MUST BE THE VERY FIRST OPTION
+                options.addArguments("--headless");
+                options.setExperimentalOption("useAutomationExtension", false);
+                options.addArguments("start-maximized"); // open Browser in maximized mode
+                options.addArguments("disable-infobars"); // disabling infobars
+                options.addArguments("--disable-extensions"); // disabling extensions
+                options.addArguments("--disable-dev-shm-usage");
                 options.addArguments("--remote-allow-origins=*");
-
                 driver = new ChromeDriver(options);
             }
             case FIREFOX -> {

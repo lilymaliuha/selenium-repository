@@ -1,16 +1,19 @@
-stages:
+image: markhobson/maven-chrome:latest
+
+stages:          # List of stages for jobs, and their order of execution
   - build
   - test
 
-build:
+build-job:       # This job runs in the build stage, which runs first.
   stage: build
   script:
-    - mvn clean package
+    - echo "Compiling the code..."
+    - mvn compile
+    - echo "Compile complete."
 
-test:
-  stage: test
-  image: maven:latest
+unit-test-job:   # This job runs in the test stage.
+  stage: test    # It only starts when the job in the build stage completes successfully.
   script:
-    - apt-get update -qy
-    - apt-get install -y chromium-driver
-    - mvn test
+    - echo "Running tests... This will take about 60 seconds."
+    - mvn clean test -Dselenide.headless=true
+    - echo "Some text"
