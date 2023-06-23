@@ -23,6 +23,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
+        System.out.println("Test data " + userEmail + " " + password);
         driver = DriverManager.createWebDriver(BrowserType.CHROME);
         driver.get(baseUrl);
     }
