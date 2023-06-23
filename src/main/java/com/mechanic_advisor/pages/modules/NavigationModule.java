@@ -12,9 +12,6 @@ import java.util.List;
 public class NavigationModule {
     protected WebDriver driver;
 
-    @FindBy(id ="sidebar-navigation")
-    private WebElement sidebarNavigationElement;
-
     @FindBy(xpath ="//a[starts-with(@class, 'nestedLink___')]")
     private WebElement nestedSidebarLink;
 

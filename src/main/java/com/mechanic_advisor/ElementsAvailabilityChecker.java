@@ -2,24 +2,15 @@ package com.mechanic_advisor;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Condition;
 
 public class ElementsAvailabilityChecker {
     private static final int DEFAULT_TIMEOUT_IN_SECONDS = 30;
 
-    /**
-     * Waits until expected condition is true.
-     *
-     * @param condition specifies expected condition
-     */
     public static void waitUntil(WebDriver driver, ExpectedCondition condition) {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(DEFAULT_TIMEOUT_IN_SECONDS));
@@ -31,11 +22,6 @@ public class ElementsAvailabilityChecker {
         }
     }
 
-    /**
-     * Waits for Angular JS processing.
-     *
-     * @return {@code boolean}
-     */
     public static boolean waitForAngularJSProcessing(WebDriver driver) {
         boolean jQCondition = false;
 

@@ -17,14 +17,12 @@ public class AppointmentManagementFeatureTests extends BaseTest {
         CalendarPage calendarPage = new CalendarPage(driver);
         CreateNewAppointmentDialog newAppointmentDialog = new CreateNewAppointmentDialog(driver);
 
-        loginPage.login(userName, password);
+        loginPage.login(userEmail, password);
         navigationModule.openCalendar(1);
         calendarPage.clickOnNewAppointmentButton();
-        newAppointmentDialog.createNewAppointmentForToday("New Appointment", AppointmentType.DROPPING_OFF);
+        newAppointmentDialog.createNewAppointmentForToday(appointmentName, AppointmentType.DROPPING_OFF);
 
-        assertTrue(calendarPage.isAppointmentPresentInCalendar("New Appointment"),
-                "Appointment is not present in the calendar.");
+        assertTrue(calendarPage.isAppointmentForTodayPresentInCalendar(appointmentName),
+                "Appointment " + appointmentName + " is not present in the calendar.");
     }
-
-
 }

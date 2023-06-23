@@ -10,15 +10,9 @@ build-job:
     - echo "Compiling the code..."
     - mvn compile
     - echo "Compile complete."
-  artifacts:
-    paths:
-      - target/surefire-reports/
 test-job:
   stage: test
   script:
     - echo "Running tests..."
-    - mvn clean test -DuserName=$USERNAME -Dpassword=$PASSWORD -Dsurefire.reports.directory=target/surefire-reports
+    - mvn clean test -DuserEmail=$USERNAME -Dpassword=$PASSWORD
     - echo "Finishing tests..."
-  artifacts:
-        paths:
-          - target/surefire-reports/

@@ -2,6 +2,7 @@ package mechanic_advisor_tests;
 
 import com.mechanic_advisor.BrowserType;
 import com.mechanic_advisor.DriverManager;
+import com.mechanic_advisor.utils.Utils;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
@@ -11,11 +12,12 @@ public class BaseTest {
     Dotenv dotenv = Dotenv.load();
     public String baseUrl = dotenv.get("BASE_URL");
 
-//    public String userName = dotenv.get("USERNAME");
+//    public String userEmail = dotenv.get("USER_EMAIL");
 //    public String password =  dotenv.get("PASSWORD");
 
-    public String userName = System.getProperty("userName");
+    public String userEmail = System.getProperty("userEmail");
     public String password = System.getProperty("password");
+    protected String appointmentName = "New Appointment" + Utils.getRandomNumber();
 
     protected WebDriver driver;
 
