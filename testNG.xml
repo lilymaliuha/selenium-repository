@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Mechanic advisor tests" verbose="1" parallel="false" configfailurepolicy="continue">
+    <test name="Appointment Management Feature">
+        <classes>
+            <class name="mechanic_advisor_tests.AppointmentManagementFeatureTests"/>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,16 @@
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  script:
+    - mvn clean package
+
+test:
+  stage: test
+  image: maven:latest
+  script:
+    - apt-get update -qy
+    - apt-get install -y chromium-driver
+    - mvn test
