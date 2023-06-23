@@ -12,11 +12,11 @@ public class BaseTest {
     Dotenv dotenv = Dotenv.load();
     public String baseUrl = dotenv.get("BASE_URL");
 
-//    public String userEmail = dotenv.get("USER_EMAIL");
-//    public String password =  dotenv.get("PASSWORD");
+    public String userEmail = dotenv.get("USER_EMAIL");
+    public String password =  dotenv.get("PASSWORD");
 
-    public String userEmail = System.getProperty("userEmail");
-    public String password = System.getProperty("password");
+//    public String userEmail = System.getProperty("userEmail");
+//    public String password = System.getProperty("password");
     protected String appointmentName = "New Appointment" + Utils.getRandomNumber();
 
     protected WebDriver driver;
