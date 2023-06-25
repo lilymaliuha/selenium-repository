@@ -48,7 +48,9 @@ In GitLab please download the report and open in the browser.
 
 2. In the left menu panel click on the "Build" and after that on the "Pipelines" item.
 
-3. Click on the "Run Pipeline" button and on the opened page again click on the "Run Pipeline" button.
+3. There are 2 variables: USERNAME and PASSWORD you can override them on this step.
 
-4. Wait for the result of the pipeline run.
+4. Click on the "Run Pipeline" button and on the opened page again click on the "Run Pipeline" button.
+
+5. Wait for the result of the pipeline run.
 

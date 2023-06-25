@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class CreateNewAppointmentDialog {
+public class AppointmentDialog {
     protected WebDriver driver;
 
     @FindBy(name ="title")
@@ -24,7 +24,10 @@ public class CreateNewAppointmentDialog {
     @FindBy(xpath = "//span[text()='Create']/parent::button")
     private WebElement createButton;
 
-    public CreateNewAppointmentDialog(WebDriver driver) {
+    @FindBy(xpath = "//span[text()='Save']/parent::button")
+    private WebElement saveButton;
+
+    public AppointmentDialog(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
@@ -40,11 +43,30 @@ public class CreateNewAppointmentDialog {
         datePickerCurrentDay.click();
     }
 
-    public void createNewAppointmentForToday(String appointmentTitle, AppointmentType appointmentType) {
+    public void enterAppointmentTitle(String appointmentTitle) {
+        ElementsAvailabilityChecker.waitUntil(driver, ExpectedConditions.visibilityOf(appointmentTitleInput));
+        appointmentTitleInput.clear();
         appointmentTitleInput.sendKeys(appointmentTitle);
-        getAppointmentType(appointmentType);
+    }
+
+    public void selectAppointmentType(AppointmentType appointmentType) {
+        getAppointmentType(appointmentType).click();
+    }
+
+    public void createNewAppointmentForToday(String appointmentTitle, AppointmentType appointmentType) {
+        enterAppointmentTitle(appointmentTitle);
+        selectAppointmentType(appointmentType);
         selectCurrentDayInDatePicker();
         createButton.click();
+        ElementsAvailabilityChecker.waitUntil(driver, ExpectedConditions.invisibilityOf(createButton));
+        ElementsAvailabilityChecker.waitForAngularJSProcessing(driver);
+    }
+
+    public void editAppointmentNameAndType(String updatedAppointmentName, AppointmentType appointmentType) {
+        enterAppointmentTitle(updatedAppointmentName);
+        selectAppointmentType(appointmentType);
+        saveButton.click();
+        ElementsAvailabilityChecker.waitUntil(driver, ExpectedConditions.invisibilityOf(saveButton));
         ElementsAvailabilityChecker.waitForAngularJSProcessing(driver);
     }
 }
