@@ -16,3 +16,9 @@ test-job:
     - echo "Running tests..."
     - mvn clean test -DuserEmail=$USERNAME -Dpassword=$PASSWORD
     - echo "Finishing tests..."
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - target/surefire-reports/TEST-*.xml
+        - target/failsafe-reports/TEST-*.xml
