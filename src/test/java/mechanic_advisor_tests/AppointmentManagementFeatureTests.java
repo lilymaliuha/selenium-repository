@@ -1,18 +1,20 @@
 package mechanic_advisor_tests;
 
+
 import com.mechanic_advisor.pages.CalendarPage;
 import com.mechanic_advisor.pages.LoginPage;
 import com.mechanic_advisor.pages.dialogs.AppointmentDetailsDialog;
 import com.mechanic_advisor.pages.dialogs.AppointmentDialog;
+import com.mechanic_advisor.pages.dialogs.DeleteAppointmentDialog;
 import com.mechanic_advisor.pages.modules.NavigationModule;
-import com.mechanic_advisor.test_data_container.AppointmentType;
 import com.mechanic_advisor.test_data_container.CalendarView;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 public class AppointmentManagementFeatureTests extends BaseTest {
-
 
     @BeforeMethod
     public void loginAndOpenCalendar() {
@@ -21,6 +23,7 @@ public class AppointmentManagementFeatureTests extends BaseTest {
         calendarPage = new CalendarPage(driver);
         appointmentDialog = new AppointmentDialog(driver);
         appointmentDetailsDialog = new AppointmentDetailsDialog(driver);
+        deleteAppointmentDialog = new DeleteAppointmentDialog(driver);
 
         loginPage.login(userEmail, password);
         navigationModule.openCalendar(1);
@@ -29,27 +32,39 @@ public class AppointmentManagementFeatureTests extends BaseTest {
 
     @Test
     public void createNewAppointmentTest() {
-        appointmentDialog.createNewAppointmentForToday(appointmentName, AppointmentType.DROPPING_OFF);
+        appointmentDialog.createAppointmentWithMandatoryFieldsForToday(newAppointmentData);
         calendarPage.selectCalendarPageView(CalendarView.DAY);
 
-        assertTrue(calendarPage.isAppointmentForTodayPresentInCalendar(appointmentName),
-                "Appointment " + appointmentName + " is not present in the calendar.");
+        assertTrue(calendarPage.isAppointmentForTodayPresentInCalendar(newAppointmentData.getAppointmentTitle()),
+                "Appointment " + newAppointmentData.getAppointmentTitle() + " is not present in the calendar.");
     }
 
     @Test
     public void editAppointmentTest() {
-        appointmentDialog.createNewAppointmentForToday(appointmentName, AppointmentType.DROPPING_OFF);
+        appointmentDialog.createAppointmentWithMandatoryFieldsForToday(newAppointmentData);
         calendarPage.selectCalendarPageView(CalendarView.DAY);
-        calendarPage.openAppointmentDetailsDialog(appointmentName);
+        calendarPage.openAppointmentDetailsDialog(newAppointmentData.getAppointmentTitle());
         appointmentDetailsDialog.openEditAppointmentDialog();
-        appointmentDialog.editAppointmentNameAndType(updatedAppointmentName, AppointmentType.NONE);
+        appointmentDialog.editAppointmentNameAndType(updatedAppointmentData);
 
-        assertTrue(calendarPage.isAppointmentForTodayPresentInCalendar(updatedAppointmentName),
-                "Updated appointment " + updatedAppointmentName + " is not present in the calendar.");
+        assertTrue(calendarPage.isAppointmentForTodayPresentInCalendar(updatedAppointmentData.getAppointmentTitle()),
+                "Updated appointment " + updatedAppointmentData.getAppointmentTitle() + " is not present in the calendar.");
 
-        calendarPage.openAppointmentDetailsDialog(updatedAppointmentName);
+        calendarPage.openAppointmentDetailsDialog(updatedAppointmentData.getAppointmentTitle());
 
-        assertTrue(appointmentDetailsDialog.isAppointmentOfTypeDisplayed(AppointmentType.NONE),
+        assertTrue(appointmentDetailsDialog.isAppointmentOfTypeDisplayed(updatedAppointmentData.getAppointmentType()),
                 "Appointment type was not updated.");
+    }
+
+    @Test
+    public void deleteAppointmentTest() {
+        appointmentDialog.createAppointmentWithMandatoryFieldsForToday(newAppointmentData);
+        calendarPage.selectCalendarPageView(CalendarView.DAY);
+        calendarPage.openAppointmentDetailsDialog(newAppointmentData.getAppointmentTitle());
+        appointmentDetailsDialog.openDeleteAppointmentDialog();
+        deleteAppointmentDialog.deleteAppointment();
+
+        assertFalse(calendarPage.isAppointmentForTodayPresentInCalendar(newAppointmentData.getAppointmentTitle()),
+                "Appointment " + newAppointmentData.getAppointmentTitle() + " was not deleted.");
     }
 }

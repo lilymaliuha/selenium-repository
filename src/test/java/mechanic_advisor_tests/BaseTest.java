@@ -6,7 +6,10 @@ import com.mechanic_advisor.pages.CalendarPage;
 import com.mechanic_advisor.pages.LoginPage;
 import com.mechanic_advisor.pages.dialogs.AppointmentDetailsDialog;
 import com.mechanic_advisor.pages.dialogs.AppointmentDialog;
+import com.mechanic_advisor.pages.dialogs.DeleteAppointmentDialog;
+import com.mechanic_advisor.pages.models.AppointmentModel;
 import com.mechanic_advisor.pages.modules.NavigationModule;
+import com.mechanic_advisor.test_data_container.AppointmentType;
 import com.mechanic_advisor.utils.Utils;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.openqa.selenium.WebDriver;
@@ -18,19 +21,22 @@ public class BaseTest {
 
     public String baseUrl = dotenv.get("BASE_URL");
 
-//    public String userEmail = dotenv.get("USER_EMAIL");
-//    public String password =  dotenv.get("PASSWORD");
+    public String userEmail = dotenv.get("USER_EMAIL");
+    public String password =  dotenv.get("PASSWORD");
 
-    public String userEmail = System.getProperty("userEmail");
-    public String password = System.getProperty("password");
-    protected String appointmentName = "New Appointment" + Utils.getRandomNumber();
-    protected String updatedAppointmentName = "Updated Appointment" + Utils.getRandomNumber();
+//    public String userEmail = System.getProperty("userEmail");
+//    public String password = System.getProperty("password");
+    private String appointmentName = "New Appointment" + Utils.getRandomNumber();
+    private String updatedAppointmentName = "Updated Appointment" + Utils.getRandomNumber();
     protected WebDriver driver;
     protected LoginPage loginPage;
     protected NavigationModule navigationModule;
     protected CalendarPage calendarPage;
     protected AppointmentDialog appointmentDialog;
     protected AppointmentDetailsDialog appointmentDetailsDialog;
+    protected DeleteAppointmentDialog deleteAppointmentDialog;
+    protected AppointmentModel newAppointmentData = new AppointmentModel(appointmentName, AppointmentType.DROPPING_OFF);
+    protected AppointmentModel updatedAppointmentData = new AppointmentModel(updatedAppointmentName, AppointmentType.NONE);
 
     @BeforeMethod
     public void setUp() {

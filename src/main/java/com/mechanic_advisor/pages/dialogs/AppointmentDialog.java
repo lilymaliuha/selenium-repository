@@ -1,6 +1,7 @@
 package com.mechanic_advisor.pages.dialogs;
 
 import com.mechanic_advisor.ElementsAvailabilityChecker;
+import com.mechanic_advisor.pages.models.AppointmentModel;
 import com.mechanic_advisor.test_data_container.AppointmentType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -20,6 +21,9 @@ public class AppointmentDialog {
 
     @FindBy(className = "react-datepicker__day--today")
     private WebElement datePickerCurrentDay;
+
+    @FindBy(name = "details")
+    private WebElement detailsInput;
 
     @FindBy(xpath = "//span[text()='Create']/parent::button")
     private WebElement createButton;
@@ -53,18 +57,22 @@ public class AppointmentDialog {
         getAppointmentType(appointmentType).click();
     }
 
-    public void createNewAppointmentForToday(String appointmentTitle, AppointmentType appointmentType) {
-        enterAppointmentTitle(appointmentTitle);
-        selectAppointmentType(appointmentType);
-        selectCurrentDayInDatePicker();
+    public void clickOnCreateButton() {
         createButton.click();
+    }
+
+    public void createAppointmentWithMandatoryFieldsForToday(AppointmentModel appointmentData) {
+        enterAppointmentTitle(appointmentData.getAppointmentTitle());
+        selectAppointmentType(appointmentData.getAppointmentType());
+        selectCurrentDayInDatePicker();
+        clickOnCreateButton();
         ElementsAvailabilityChecker.waitUntil(driver, ExpectedConditions.invisibilityOf(createButton));
         ElementsAvailabilityChecker.waitForAngularJSProcessing(driver);
     }
 
-    public void editAppointmentNameAndType(String updatedAppointmentName, AppointmentType appointmentType) {
-        enterAppointmentTitle(updatedAppointmentName);
-        selectAppointmentType(appointmentType);
+    public void editAppointmentNameAndType(AppointmentModel appointmentData) {
+        enterAppointmentTitle(appointmentData.getAppointmentTitle());
+        selectAppointmentType(appointmentData.getAppointmentType());
         saveButton.click();
         ElementsAvailabilityChecker.waitUntil(driver, ExpectedConditions.invisibilityOf(saveButton));
         ElementsAvailabilityChecker.waitForAngularJSProcessing(driver);

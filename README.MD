@@ -28,7 +28,7 @@ This command will trigger the test execution using the TestNG framework and gene
 After running the tests, the test reports will be generated in the target/surefire-reports directory.<br>
 Locally you can open the HTML report files (index.html and emailable-report.html) in a web browser to view<br>
 the detailed test results, including the number of tests executed, passed, failed, etc.<br>
-In GitLab please download the report and open in the browser.
+In GitLab please click on the commit and select the "Tests" tab to verify results.
 
 # Running the Pipeline
 

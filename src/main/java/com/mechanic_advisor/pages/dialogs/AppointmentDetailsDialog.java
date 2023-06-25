@@ -19,6 +19,9 @@ public class AppointmentDetailsDialog {
     @FindBy(xpath = "//span[contains(text(), 'Edit Appointment')]")
     private WebElement editAppointmentItem;
 
+    @FindBy(xpath = "//span[contains(text(), 'Delete Appointment')]")
+    private WebElement deleteAppointmentItem;
+
     public AppointmentDetailsDialog(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -31,6 +34,11 @@ public class AppointmentDetailsDialog {
     public void openEditAppointmentDialog() {
         threeDotsElement.click();
         editAppointmentItem.click();
+    }
+
+    public void openDeleteAppointmentDialog() {
+        threeDotsElement.click();
+        deleteAppointmentItem.click();
     }
 
     public boolean isAppointmentOfTypeDisplayed(AppointmentType appointmentType) {
