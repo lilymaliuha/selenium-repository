@@ -21,11 +21,11 @@ public class BaseTest {
 
     public String baseUrl = dotenv.get("BASE_URL");
 
-    public String userEmail = dotenv.get("USER_EMAIL");
-    public String password =  dotenv.get("PASSWORD");
+//    public String userEmail = dotenv.get("USER_EMAIL");
+//    public String password =  dotenv.get("PASSWORD");
 
-//    public String userEmail = System.getProperty("userEmail");
-//    public String password = System.getProperty("password");
+    public String userEmail = System.getProperty("userEmail");
+    public String password = System.getProperty("password");
     private String appointmentName = "New Appointment" + Utils.getRandomNumber();
     private String updatedAppointmentName = "Updated Appointment" + Utils.getRandomNumber();
     protected WebDriver driver;
