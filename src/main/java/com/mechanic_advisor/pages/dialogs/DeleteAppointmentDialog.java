@@ -24,6 +24,7 @@ public class DeleteAppointmentDialog {
     public void deleteAppointment() {
         ElementsAvailabilityChecker.waitUntil(driver, ExpectedConditions.elementToBeClickable(approveDeleteButton));
         approveDeleteButton.click();
+        ElementsAvailabilityChecker.waitUntil(driver, ExpectedConditions.invisibilityOf(approveDeleteButton));
         ElementsAvailabilityChecker.waitForAngularJSProcessing(driver);
     }
 }
