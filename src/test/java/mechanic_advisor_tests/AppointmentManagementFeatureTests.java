@@ -58,13 +58,13 @@ public class AppointmentManagementFeatureTests extends BaseTest {
 
     @Test
     public void deleteAppointmentTest() {
-        appointmentDialog.createAppointmentWithMandatoryFieldsForToday(newAppointmentData);
+        appointmentDialog.createAppointmentWithMandatoryFieldsForToday(appointmentData);
         calendarPage.selectCalendarPageView(CalendarView.DAY);
-        calendarPage.openAppointmentDetailsDialog(newAppointmentData.getAppointmentTitle());
+        calendarPage.openAppointmentDetailsDialog(appointmentData.getAppointmentTitle());
         appointmentDetailsDialog.openDeleteAppointmentDialog();
         deleteAppointmentDialog.deleteAppointment();
 
-        assertFalse(calendarPage.isAppointmentForTodayPresentInCalendar(newAppointmentData.getAppointmentTitle()),
-                "Appointment " + newAppointmentData.getAppointmentTitle() + " was not deleted.");
+        assertFalse(calendarPage.isAppointmentForTodayPresentInCalendar(appointmentData.getAppointmentTitle()),
+                "Appointment " + appointmentData.getAppointmentTitle() + " was not deleted.");
     }
 }

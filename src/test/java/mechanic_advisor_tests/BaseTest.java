@@ -20,14 +20,10 @@ public class BaseTest {
     Dotenv dotenv = Dotenv.load();
 
     public String baseUrl = dotenv.get("BASE_URL");
-
 //    public String userEmail = dotenv.get("USER_EMAIL");
 //    public String password =  dotenv.get("PASSWORD");
-
     public String userEmail = System.getProperty("userEmail");
     public String password = System.getProperty("password");
-    private String appointmentName = "New Appointment" + Utils.getRandomNumber();
-    private String updatedAppointmentName = "Updated Appointment" + Utils.getRandomNumber();
     protected WebDriver driver;
     protected LoginPage loginPage;
     protected NavigationModule navigationModule;
@@ -35,8 +31,9 @@ public class BaseTest {
     protected AppointmentDialog appointmentDialog;
     protected AppointmentDetailsDialog appointmentDetailsDialog;
     protected DeleteAppointmentDialog deleteAppointmentDialog;
-    protected AppointmentModel newAppointmentData = new AppointmentModel(appointmentName, AppointmentType.DROPPING_OFF);
-    protected AppointmentModel updatedAppointmentData = new AppointmentModel(updatedAppointmentName, AppointmentType.NONE);
+    protected AppointmentModel appointmentData = new AppointmentModel("Appointment" + Utils.getRandomNumber(), AppointmentType.WAITING);
+    protected AppointmentModel newAppointmentData = new AppointmentModel("New Appointment" + Utils.getRandomNumber(), AppointmentType.DROPPING_OFF);
+    protected AppointmentModel updatedAppointmentData = new AppointmentModel("Updated Appointment" + Utils.getRandomNumber(), AppointmentType.NONE);
 
     @BeforeMethod
     public void setUp() {

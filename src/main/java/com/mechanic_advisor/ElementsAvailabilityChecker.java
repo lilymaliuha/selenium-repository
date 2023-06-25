@@ -38,8 +38,4 @@ public class ElementsAvailabilityChecker {
         }
         return jQCondition;
     }
-
-    public static void refresh(WebDriver driver) {
-        driver.navigate().refresh();
-    }
 }
